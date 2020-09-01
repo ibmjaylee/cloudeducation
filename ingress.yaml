@@ -1,0 +1,15 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: ingress-for-ibmdomain
+  annotations:
+    ingress.bluemix.net/rewrite-path: serviceName=< service name > rewrite=/
+spec:
+  rules:
+  - host: < Ingress subdomain >
+    http:
+      paths:
+      - path: "/<service name>/"
+        backend:
+          serviceName: <service name>
+          servicePort: 3000
